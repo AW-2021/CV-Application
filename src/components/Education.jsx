@@ -1,5 +1,10 @@
-
-const Education = ({ disabledVal, inputs, handleChange, newEduDesc, setNewEduDesc }) => {
+const Education = ({
+  disabledVal,
+  inputs,
+  handleChange,
+  newEduDesc,
+  setNewEduDesc,
+}) => {
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EDUCATION</legend>
@@ -22,7 +27,8 @@ const Education = ({ disabledVal, inputs, handleChange, newEduDesc, setNewEduDes
             name="educationDegree"
             value={inputs.educationDegree}
             onChange={handleChange}
-          />,
+          />
+          ,
           <input
             name="educationGrade"
             value={inputs.educationGrade}
@@ -35,7 +41,8 @@ const Education = ({ disabledVal, inputs, handleChange, newEduDesc, setNewEduDes
             name="eduStartDate"
             value={inputs.eduStartDate}
             onChange={handleChange}
-          /> - 
+          />{" "}
+          -
           <input
             name="eduEndDate"
             value={inputs.eduEndDate}
@@ -45,11 +52,9 @@ const Education = ({ disabledVal, inputs, handleChange, newEduDesc, setNewEduDes
       </div>
 
       <ul className="list-inside list-disc w-full">
-        {
-          inputs.eduDescList?.map((desc) => (
-              <li key={desc.id}>{desc.text}</li>
-          ))
-        }
+        {inputs.eduDescList?.map((desc) => (
+          <li key={desc.id}>{desc.text}</li>
+        ))}
         <li>
           <input
             name="eduDescList"
@@ -60,7 +65,6 @@ const Education = ({ disabledVal, inputs, handleChange, newEduDesc, setNewEduDes
           />
         </li>
       </ul>
-
     </fieldset>
   );
 };
