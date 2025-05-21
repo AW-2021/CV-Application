@@ -13,6 +13,6 @@ input:focus, textarea:focus {
     padding: 0.25rem;
 }
 
-input:not(#summary) {
+input, textarea {
     field-sizing: content;
 }
