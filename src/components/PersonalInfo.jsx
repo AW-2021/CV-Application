@@ -6,66 +6,65 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
         name="fullName"
         value={inputs.fullName}
         onChange={handleChange}
-        placeholder="Amina Wasif"
-        className="block text-center text-2xl font-bold m-auto"
+        placeholder="Jane Doe"
+        className="w-full block text-center text-2xl font-bold m-auto mb-1"
       />
       <input
         id="jobTitle"
         name="jobTitle"
         value={inputs.jobTitle}
         onChange={handleChange}
-        placeholder="Junior Software Developer"
-        className="block text-center text-lg m-auto"
+        placeholder="Senior Product Designer"
+        className="w-full block text-center text-lg m-auto mb-2"
       />
-      <table className="w-full">
+      <table className="w-full ">
         <tbody>
-          
           <tr className="flex justify-center items-center">
-            <td className="border-r-2 border-black px-3">
+            <td className="text-sm px-3">
               <input
                 type="email"
                 id="emailAddress"
                 name="emailAddress"
                 value={inputs.emailAddress}
                 onChange={handleChange}
-                placeholder="aminawasif@outlook.com"
+                placeholder="janedoe@gmail.com"
                 className="max-w-56 text-center"
               />
-            </td>
+            </td>|
 
-            <td className="border-r-2 border-black px-3">
+            <td className="text-sm px-3 ">
               <input
                 type="tel"
                 id="mobile"
                 name="mobile"
                 value={inputs.mobile}
                 onChange={handleChange}
-                placeholder="+90 6002135"
+                placeholder="+880 123 606 7415"
                 className="max-w-32 text-center"
               />
-            </td>
+            </td>|
 
-            <td className="pl-3 text-center">
+            <td className="text-sm pl-3 text-center">
               <input
                 id="city"
                 name="city"
                 value={inputs.city}
                 onChange={handleChange}
-                placeholder="Boston"
-                className="max-w-20"
+                placeholder="San Francisco"
+                className="max-w-32"
               />
             </td>
 
             <td>,</td>
 
-            <td className="px-3 text-center">
+            <td className="text-sm pr-3 text-center">
               <input
                 id="country"
                 name="country"
                 value={inputs.country}
                 onChange={handleChange}
                 placeholder="USA"
-                className="max-w-20"
+                className="max-w-32"
               />
             </td>
           </tr>
