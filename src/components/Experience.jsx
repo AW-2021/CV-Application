@@ -1,3 +1,5 @@
+import { BsPlusCircleFill } from "react-icons/bs";
+
 const Experience = ({
   disabledVal,
   inputs,
@@ -81,6 +83,14 @@ const Experience = ({
           />
         </li>
       </ul>
+      {
+        !disabledVal && (
+          <button type="button" className="w-full p-1 mb-4 mt-4 border-2 border-blue-500 rounded-full">
+            <BsPlusCircleFill className="inline text-lg text-blue-500 mr-2 align-text-top" />
+            Add Experience
+          </button>
+        )
+      }
     </fieldset>
   );
 };

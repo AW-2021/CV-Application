@@ -17,7 +17,7 @@ const Header = ({ setDisabledVal }) => {
   };
 
   return (
-    <header className="w-full h-32 fixed top-0 bg-blue-700 shadow-lg">
+    <header className="w-full h-32 fixed top-0 bg-blue-800 shadow-lg">
       <Navbar />
       <div className="h-[45%] flex justify-between items-center px-10 bg-white ">
         <h2 className="text-lg font-bold">Your CV</h2>
