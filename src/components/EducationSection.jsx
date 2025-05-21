@@ -1,3 +1,5 @@
+import { BsPlusCircleFill } from "react-icons/bs";
+
 const Education = ({
   disabledVal,
   inputs,
@@ -5,6 +7,10 @@ const Education = ({
   newEduDesc,
   setNewEduDesc,
 }) => {
+  const handleClick = () => {
+    
+  }
+
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EDUCATION</legend>
@@ -50,7 +56,7 @@ const Education = ({
             value={inputs.eduStartDate}
             onChange={handleChange}
             placeholder="Aug 2011"
-            className="font-bold" 
+            className="font-bold"
           />{" "}
           -{" "}
           <input
@@ -78,6 +84,16 @@ const Education = ({
           />
         </li>
       </ul>
+      {!disabledVal && (
+        <button
+          type="button"
+          onClick={handleClick}
+          className="w-full p-1 mb-4 mt-4 border-2 border-blue-500 rounded-full"
+        >
+          <BsPlusCircleFill className="inline text-lg text-blue-500 mr-2 align-text-top" />
+          Add Education
+        </button>
+      )}
     </fieldset>
   );
 };

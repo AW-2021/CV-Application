@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import Summary from "./Summary";
-import Education from "./Education";
+import EducationSection from "./EducationSection";
 import Experience from "./Experience";
 
 const Form = ({ disabledVal }) => {
@@ -53,7 +53,7 @@ const Form = ({ disabledVal }) => {
         inputs={inputs}
         handleChange={handleChange}
       />
-      <Education
+      <EducationSection
         disabledVal={disabledVal}
         inputs={inputs}
         handleChange={handleChange}
