@@ -30,7 +30,9 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
                 placeholder="janedoe@gmail.com"
                 className="max-w-56 text-center"
               />
-            </td>|
+            </td>
+            
+            <td>|</td>
 
             <td className="text-sm px-3 ">
               <input
@@ -42,7 +44,9 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
                 placeholder="+880 123 606 7415"
                 className="max-w-32 text-center"
               />
-            </td>|
+            </td>
+
+            <td>|</td>
 
             <td className="text-sm pl-3 text-center">
               <input

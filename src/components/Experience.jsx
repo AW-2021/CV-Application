@@ -14,11 +14,15 @@ const Experience = ({
           name="companyName"
           value={inputs.companyName}
           onChange={handleChange}
+          className="font-bold uppercase"
+          placeholder="CreativeMinds"
         />
         <input
           name="companyLocation"
           value={inputs.companyLocation}
           onChange={handleChange}
+          className="font-bold"
+          placeholder="San Francisco, USA"
         />
       </div>
 
@@ -28,12 +32,16 @@ const Experience = ({
             name="companyRole"
             value={inputs.companyRole}
             onChange={handleChange}
+            className="font-bold"
+            placeholder="Senior Product Designer"
           />
-          ,
+          ,{" "}
           <input
             name="jobType"
             value={inputs.jobType}
             onChange={handleChange}
+            className="font-bold"
+            placeholder="Full time"
           />
         </div>
 
@@ -42,12 +50,16 @@ const Experience = ({
             name="expStartDate"
             value={inputs.expStartDate}
             onChange={handleChange}
-          />
-          -
+            placeholder="June 2021"
+            className="font-bold"
+          />{" "}
+          -{" "}
           <input
             id="expEndDate"
             value={inputs.expEndDate}
             onChange={handleChange}
+            className="font-bold"
+            placeholder="Present"
           />
         </div>
       </div>
@@ -65,6 +77,7 @@ const Experience = ({
             onChange={(e) => setNewExpDesc(e.target.value)}
             onKeyDown={handleChange}
             className="w-11/12 focus:p-2"
+            placeholder="Write your professional achievements and responsibilities here."
           />
         </li>
       </ul>
