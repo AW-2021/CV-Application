@@ -3,7 +3,7 @@ import { useState } from "react";
 const Education = ({ itemIndex, education, setEducation, handleChange }) => {
   const [newEduDesc, setNewEduDesc] = useState("");
 
-  const handleAddDesc = (e, index) => {
+  const handleAddDesc = (e) => {
     const { name, value } = e.target;
 
     if (e.key === "Enter") {
@@ -11,9 +11,9 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
 
       setEducation((prevEducation) => {
         const newEducation = [...prevEducation];
-        newEducation[index] = {
-          ...newEducation[index],
-          [name]: [...prevEducation[index]?.eduDescList || [], newValue],
+        newEducation[itemIndex] = {
+          ...newEducation[itemIndex],
+          [name]: [...prevEducation[itemIndex]?.eduDescList || [], newValue],
         }
         return newEducation;
       })
@@ -86,7 +86,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
             name="eduDescList"
             value={newEduDesc}
             onChange={(e) => setNewEduDesc(e.target.value)}
-            onKeyDown={(e) => handleAddDesc(e, itemIndex)}
+            onKeyDown={handleAddDesc}
             className="w-11/12 focus:p-2"
             placeholder="Write your academic achievements here."
           />

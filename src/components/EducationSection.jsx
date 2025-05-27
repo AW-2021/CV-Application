@@ -6,7 +6,6 @@ const EducationSection = ({ disabledVal }) => {
   const [education, setEducation] = useState([]);
   const list = [];
   const [listLength, setListLength] = useState(1);
-  const [index, setIndex] = useState(0);
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
@@ -21,7 +20,6 @@ const EducationSection = ({ disabledVal }) => {
 
   const handleClick = () => {
     setListLength((prevLength) => prevLength + 1);
-    setIndex((prevIndex) => prevIndex + 1);
   };
 
   for (let i = 0; i < listLength; i++) {
@@ -36,14 +34,12 @@ const EducationSection = ({ disabledVal }) => {
     );
   }
 
-  console.log(education);
-
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EDUCATION</legend>
 
       {/* Every new education field is a separate component */}
-      {list}
+      { list }
 
       {!disabledVal && (
         <button
