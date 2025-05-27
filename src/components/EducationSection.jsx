@@ -1,89 +1,50 @@
+import { useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
+import Education from "./Education";
 
-const Education = ({
-  disabledVal,
-  inputs,
-  handleChange,
-  newEduDesc,
-  setNewEduDesc,
-}) => {
+const EducationSection = ({ disabledVal }) => {
+  const [education, setEducation] = useState([]);
+  const list = [];
+  const [listLength, setListLength] = useState(1);
+  const [index, setIndex] = useState(0);
+
+  const handleChange = (e, index) => {
+    const { name, value } = e.target;
+
+    const newEducation = [...education];
+    newEducation[index] = {
+      ...newEducation[index],
+      [name]: value,
+    };
+    setEducation(newEducation);
+  };
+
   const handleClick = () => {
-    
+    setListLength((prevLength) => prevLength + 1);
+    setIndex((prevIndex) => prevIndex + 1);
+  };
+
+  for (let i = 0; i < listLength; i++) {
+    list.push(
+      <Education
+        key={i}
+        itemIndex={i}
+        education={education}
+        setEducation={setEducation}
+        handleChange={handleChange}
+      />
+    );
   }
+
+  console.log(education);
 
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EDUCATION</legend>
+
       {/* Every new education field is a separate component */}
-      <div className="w-full flex justify-between">
-        <input
-          name="educationInstitute"
-          value={inputs.educationInstitute}
-          onChange={handleChange}
-          className="font-bold uppercase"
-          placeholder="Brown University"
-        />
-        <input
-          name="educationLocation"
-          value={inputs.educationLocation}
-          onChange={handleChange}
-          className="font-bold"
-          placeholder="Rhode Island, USA"
-        />
-      </div>
-      <div className="w-full flex justify-between">
-        <div>
-          <input
-            name="educationDegree"
-            value={inputs.educationDegree}
-            onChange={handleChange}
-            className="font-bold"
-            placeholder="Bachelor of Industrial Design"
-          />
-          ,{" "}
-          <input
-            name="educationGrade"
-            value={inputs.educationGrade}
-            onChange={handleChange}
-            className="font-bold"
-            placeholder="CGPA 3.70 / 4.00"
-          />
-        </div>
+      {list}
 
-        <div>
-          <input
-            name="eduStartDate"
-            value={inputs.eduStartDate}
-            onChange={handleChange}
-            placeholder="Aug 2011"
-            className="font-bold"
-          />{" "}
-          -{" "}
-          <input
-            name="eduEndDate"
-            value={inputs.eduEndDate}
-            onChange={handleChange}
-            className="font-bold"
-            placeholder="May 2015"
-          />
-        </div>
-      </div>
-
-      <ul className="list-inside list-disc w-full">
-        {inputs.eduDescList?.map((desc) => (
-          <li key={desc.id}>{desc.text}</li>
-        ))}
-        <li>
-          <input
-            name="eduDescList"
-            value={newEduDesc}
-            onChange={(e) => setNewEduDesc(e.target.value)}
-            onKeyDown={handleChange}
-            className="w-11/12 focus:p-2"
-            placeholder="Write your academic achievements here."
-          />
-        </li>
-      </ul>
       {!disabledVal && (
         <button
           type="button"
@@ -98,4 +59,4 @@ const Education = ({
   );
 };
 
-export default Education;
+export default EducationSection;
