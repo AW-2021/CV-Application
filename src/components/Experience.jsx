@@ -1,28 +1,40 @@
-import { BsPlusCircleFill } from "react-icons/bs";
+import { useState } from "react";
 
-const Experience = ({
-  disabledVal,
-  inputs,
-  handleChange,
-  newExpDesc,
-  setNewExpDesc,
-}) => {
+const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
+  const [newExpDesc, setNewExpDesc] = useState("");
+
+  const handleAddDesc = (e) => {
+    const { name, value } = e.target;
+
+    if (e.key === "Enter") {
+      const newValue = { id: Date.now(), text: value };
+
+      setExperience((prevExperience) => {
+        const newExperience = [...prevExperience];
+        newExperience[itemIndex] = {
+          ...newExperience[itemIndex],
+          [name]: [...prevExperience[itemIndex]?.expDescList || [], newValue],
+        }
+        return newExperience;
+      })
+      setNewExpDesc("");
+    }
+  };
+  
   return (
-    <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
-      {/* Every new experience field is a separate component */}
-      <legend className="font-bold">EXPERIENCE</legend>
+    <>
       <div className="w-full flex justify-between">
         <input
           name="companyName"
-          value={inputs.companyName}
-          onChange={handleChange}
+          value={experience[itemIndex]?.companyName || ""}
+          onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold uppercase"
           placeholder="CreativeMinds"
         />
         <input
           name="companyLocation"
-          value={inputs.companyLocation}
-          onChange={handleChange}
+          value={experience[itemIndex]?.companyLocation || ""}
+          onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold"
           placeholder="San Francisco, USA"
         />
@@ -32,16 +44,16 @@ const Experience = ({
         <div>
           <input
             name="companyRole"
-            value={inputs.companyRole}
-            onChange={handleChange}
+            value={experience[itemIndex]?.companyRole || ""}
+            onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Senior Product Designer"
           />
           ,{" "}
           <input
             name="jobType"
-            value={inputs.jobType}
-            onChange={handleChange}
+            value={experience[itemIndex]?.jobType || ""}
+            onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Full time"
           />
@@ -50,16 +62,16 @@ const Experience = ({
         <div>
           <input
             name="expStartDate"
-            value={inputs.expStartDate}
-            onChange={handleChange}
+            value={experience[itemIndex]?.expStartDate || ""}
+            onChange={(e) => handleChange(e, itemIndex)}
             placeholder="June 2021"
             className="font-bold"
           />{" "}
           -{" "}
           <input
-            id="expEndDate"
-            value={inputs.expEndDate}
-            onChange={handleChange}
+            name="expEndDate"
+            value={experience[itemIndex]?.expEndDate || ""}
+            onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Present"
           />
@@ -67,31 +79,21 @@ const Experience = ({
       </div>
 
       <ul className="list-inside list-disc">
-        {
-          inputs.expDescList.map((desc) => (
-              <li key={desc.id}>{desc.text}</li>
-          ))
-        }
+        {experience[itemIndex]?.expDescList?.map((desc) => (
+          <li key={desc.id}>{desc.text}</li>
+        ))}
         <li>
           <input
             name="expDescList"
             value={newExpDesc}
             onChange={(e) => setNewExpDesc(e.target.value)}
-            onKeyDown={handleChange}
+            onKeyDown={handleAddDesc}
             className="w-11/12 focus:p-2"
             placeholder="Write your professional achievements and responsibilities here."
           />
         </li>
       </ul>
-      {
-        !disabledVal && (
-          <button type="button" className="w-full p-1 mb-4 mt-4 border-2 border-blue-500 rounded-full">
-            <BsPlusCircleFill className="inline text-lg text-blue-500 mr-2 align-text-top" />
-            Add Experience
-          </button>
-        )
-      }
-    </fieldset>
+    </>
   );
 };
 
