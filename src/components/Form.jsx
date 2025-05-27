@@ -5,43 +5,23 @@ import EducationSection from "./EducationSection";
 import Experience from "./Experience";
 
 const Form = ({ disabledVal }) => {
-  const [inputs, setInputs] = useState({
-    eduDescList: [],
-    expDescList: [],
-  });
+  const [inputs, setInputs] = useState({});
 
-  const [newEduDesc, setNewEduDesc] = useState("");
-  const [newExpDesc, setNewExpDesc] = useState("");
+  const [experience, setExperience] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "eduDescList" || name == "expDescList") {
-      if (e.key === "Enter") {
-        const newValue = { id: Date.now(), text: value };
-
-        setInputs((prevInputs) => ({
-          ...prevInputs,
-          [name]: [...prevInputs[name], newValue],
-        }));
-        if (name === "eduDescList") {
-          setNewEduDesc("");
-        } else {
-          setNewExpDesc("");
-        }
-      }
-    } else {
-      setInputs((prevInputs) => ({
-        ...prevInputs,
-        [name]: value,
-      }));
-    }
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
   };
 
   return (
     <form
       autoComplete="off"
-      className="h-[29.7cm] w-[21cm] p-5 flex flex-col gap-4 bg-white rounded-sm"
+      className="h-[29.7cm] w-[21cm] p-5 flex flex-col gap-4 bg-white rounded-sm overflow-y-hidden"
     >
       <PersonalInfo
         disabledVal={disabledVal}
@@ -55,18 +35,11 @@ const Form = ({ disabledVal }) => {
       />
       <EducationSection
         disabledVal={disabledVal}
-        inputs={inputs}
-        handleChange={handleChange}
-        newEduDesc={newEduDesc}
-        setNewEduDesc={setNewEduDesc}
       />
-      <Experience
+      {/* <Experience
         disabledVal={disabledVal}
-        inputs={inputs}
-        handleChange={handleChange}
-        newExpDesc={newExpDesc}
-        setNewExpDesc={setNewExpDesc}
-      />
+        experience={experience}
+      /> */}
     </form>
   );
 };
