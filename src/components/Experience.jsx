@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
+const Experience = ({ itemIndex, experiences, setExperiences, handleChange }) => {
   const [newExpDesc, setNewExpDesc] = useState("");
 
   const handleAddDesc = (e) => {
     const { name, value } = e.target;
 
     if (e.key === "Enter") {
+      e.preventDefault();
       const newValue = { id: Date.now(), text: value };
 
-      setExperience((prevExperience) => {
+      setExperiences((prevExperience) => {
         const newExperience = [...prevExperience];
         newExperience[itemIndex] = {
           ...newExperience[itemIndex],
@@ -22,18 +23,18 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
   };
   
   return (
-    <>
+    <div>
       <div className="w-full flex justify-between">
         <input
           name="companyName"
-          value={experience[itemIndex]?.companyName || ""}
+          value={experiences[itemIndex]?.companyName || ""}
           onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold uppercase"
           placeholder="CreativeMinds"
         />
         <input
           name="companyLocation"
-          value={experience[itemIndex]?.companyLocation || ""}
+          value={experiences[itemIndex]?.companyLocation || ""}
           onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold"
           placeholder="San Francisco, USA"
@@ -44,7 +45,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
         <div>
           <input
             name="companyRole"
-            value={experience[itemIndex]?.companyRole || ""}
+            value={experiences[itemIndex]?.companyRole || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Senior Product Designer"
@@ -52,7 +53,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
           ,{" "}
           <input
             name="jobType"
-            value={experience[itemIndex]?.jobType || ""}
+            value={experiences[itemIndex]?.jobType || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Full time"
@@ -62,7 +63,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
         <div>
           <input
             name="expStartDate"
-            value={experience[itemIndex]?.expStartDate || ""}
+            value={experiences[itemIndex]?.expStartDate || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             placeholder="June 2021"
             className="font-bold"
@@ -70,7 +71,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
           -{" "}
           <input
             name="expEndDate"
-            value={experience[itemIndex]?.expEndDate || ""}
+            value={experiences[itemIndex]?.expEndDate || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Present"
@@ -79,7 +80,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
       </div>
 
       <ul className="list-inside list-disc">
-        {experience[itemIndex]?.expDescList?.map((desc) => (
+        {experiences[itemIndex]?.expDescList?.map((desc) => (
           <li key={desc.id}>{desc.text}</li>
         ))}
         <li>
@@ -93,7 +94,7 @@ const Experience = ({ itemIndex, experience, setExperience, handleChange }) => {
           />
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
