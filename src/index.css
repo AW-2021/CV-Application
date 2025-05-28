@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+    --container-height: 29.7cm; /* 1122.52px */
+}
+
 input:disabled, textarea:disabled {
     background-color: white;
 }
