@@ -4,33 +4,30 @@ import Experience from "./Experience";
 
 const MAX_HEIGHT = 500;
 
-const ExperienceSection = ({ disabledVal, experiences, setExperiences, handleChange, setOverflowItems }) => {
-  
-  const measureRef = useRef(null);
-  const [visibleItems, setVisibleItems] = useState([]);
+const ExperienceSection = ({ disabledVal }) => {
+  const [experiences, setExperiences] = useState([
+    {
+      id: 0,
+      companyName: "",
+      companyLocation: "",
+      companyRole: "",
+      jobType: "",
+      expStartDate: "",
+      expEndDate: "",
+      expDescList: [],
+    },
+  ]);
 
-  useLayoutEffect(() => {
-    if (!measureRef.current) return;
+  const handleChange = (e, index) => {
+    const { name, value } = e.target;
 
-    const container = measureRef.current;
-    const children = Array.from(container.children);
-
-    let totalHeight = 0;
-    let splitIndex = children.length;
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      totalHeight += child.offsetHeight;
-
-      if (totalHeight > MAX_HEIGHT) {
-        splitIndex = i;
-        break;
-      }
-    }
-
-    setVisibleItems(experiences.slice(0, splitIndex));
-    setOverflowItems(experiences.slice(splitIndex));
-  }, [experiences]);
+    const newExperience = [...experiences];
+    newExperience[index] = {
+      ...newExperience[index],
+      [name]: value,
+    };
+    setExperiences(newExperience);
+  };
 
   const handleClick = () => {
     setExperiences((prev) => [
@@ -48,46 +45,20 @@ const ExperienceSection = ({ disabledVal, experiences, setExperiences, handleCha
     ]);
   };
 
-  
-
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EXPERIENCE</legend>
 
-      <div className="bg-pink-500 max-h-[500px] overflow-y-hidden">
-        {visibleItems.map((item) => (
-          <Experience
-            key={item.id}
-            itemIndex={item.id}
-            experiences={experiences}
-            setExperiences={setExperiences}
-            handleChange={handleChange}
-          />
-        ))}
-      </div>
-
-      <div
-        ref={measureRef}
-        style={{
-          visibility: "hidden",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "250px",
-          padding: "10px",
-          zIndex: -1,
-        }}
-      >
-        {experiences.map((item) => (
-          <Experience
-            key={item.id}
-            itemIndex={item.id}
-            experiences={experiences}
-            setExperiences={setExperiences}
-            handleChange={handleChange}
-          />
-        ))}
-      </div>
+      {/* Every new experience field is a separate component */}
+      {experiences.map((item) => (
+        <Experience
+          key={item.id}
+          itemIndex={item.id}
+          experiences={experiences}
+          setExperiences={setExperiences}
+          handleChange={handleChange}
+        />
+      ))}
 
       {!disabledVal && (
         <button
