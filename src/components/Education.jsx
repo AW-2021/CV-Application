@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-const Education = ({ itemIndex, education, setEducation, handleChange }) => {
+const Education = ({ itemIndex, educations, setEducations, handleChange }) => {
   const [newEduDesc, setNewEduDesc] = useState("");
 
   const handleAddDesc = (e) => {
     const { name, value } = e.target;
 
     if (e.key === "Enter") {
+      e.preventDefault();
       const newValue = { id: Date.now(), text: value };
 
-      setEducation((prevEducation) => {
+      setEducations((prevEducation) => {
         const newEducation = [...prevEducation];
         newEducation[itemIndex] = {
           ...newEducation[itemIndex],
@@ -26,14 +27,14 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
       <div className="w-full flex justify-between">
         <input
           name="educationInstitute"
-          value={education[itemIndex]?.educationInstitute || ""}
+          value={educations[itemIndex]?.educationInstitute || ""}
           onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold uppercase"
           placeholder="Brown University"
         />
         <input
           name="educationLocation"
-          value={education[itemIndex]?.educationLocation || ""}
+          value={educations[itemIndex]?.educationLocation || ""}
           onChange={(e) => handleChange(e, itemIndex)}
           className="font-bold"
           placeholder="Rhode Island, USA"
@@ -43,7 +44,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
         <div>
           <input
             name="educationDegree"
-            value={education[itemIndex]?.educationDegree || ""}
+            value={educations[itemIndex]?.educationDegree || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="Bachelor of Industrial Design"
@@ -51,7 +52,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
           ,{" "}
           <input
             name="educationGrade"
-            value={education[itemIndex]?.educationGrade || ""}
+            value={educations[itemIndex]?.educationGrade || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="CGPA 3.70 / 4.00"
@@ -61,7 +62,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
         <div>
           <input
             name="eduStartDate"
-            value={education[itemIndex]?.eduStartDate || ""}
+            value={educations[itemIndex]?.eduStartDate || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             placeholder="Aug 2011"
             className="font-bold"
@@ -69,7 +70,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
           -{" "}
           <input
             name="eduEndDate"
-            value={education[itemIndex]?.eduEndDate || ""}
+            value={educations[itemIndex]?.eduEndDate || ""}
             onChange={(e) => handleChange(e, itemIndex)}
             className="font-bold"
             placeholder="May 2015"
@@ -78,7 +79,7 @@ const Education = ({ itemIndex, education, setEducation, handleChange }) => {
       </div>
 
       <ul className="list-inside list-disc w-full">
-        {education[itemIndex]?.eduDescList?.map((desc) => (
+        {educations[itemIndex]?.eduDescList?.map((desc) => (
           <li key={desc.id}>{desc.text}</li>
         ))}
         <li>
