@@ -2,44 +2,61 @@ import { useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import Education from "./Education";
 
-const EducationSection = ({ disabledVal }) => {
-  const [education, setEducation] = useState([]);
-  const list = [];
-  const [listLength, setListLength] = useState(1);
+const EducationSection = ({disabledVal}) => {
+  const [educations, setEducations] = useState([
+    {
+      id: 0,
+      educationInstitute: "",
+      educationLocation: "",
+      educationDegree: "",
+      educationGrade: "",
+      eduStartDate: "",
+      eduEndDate: "",
+      eduDescList: [],
+    },
+  ]);
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
 
-    const newEducation = [...education];
+    const newEducation = [...educations];
     newEducation[index] = {
       ...newEducation[index],
       [name]: value,
     };
-    setEducation(newEducation);
+    setEducations(newEducation);
   };
 
   const handleClick = () => {
-    setListLength((prevLength) => prevLength + 1);
+    setEducations((prev) => [
+      ...prev,
+      {
+        id: educations.length,
+        educationInstitute: "",
+        educationLocation: "",
+        educationDegree: "",
+        educationGrade: "",
+        eduStartDate: "",
+        eduEndDate: "",
+        eduDescList: [],
+      },
+    ]);
   };
-
-  for (let i = 0; i < listLength; i++) {
-    list.push(
-      <Education
-        key={i}
-        itemIndex={i}
-        education={education}
-        setEducation={setEducation}
-        handleChange={handleChange}
-      />
-    );
-  }
 
   return (
     <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
       <legend className="font-bold">EDUCATION</legend>
 
       {/* Every new education field is a separate component */}
-      { list }
+        {educations.map((item) => (
+          <Education
+            key={item.id}
+            itemIndex={item.id}
+            educations={educations}
+            setEducations={setEducations}
+            handleChange={handleChange}
+          />
+        ))}
 
       {!disabledVal && (
         <button
