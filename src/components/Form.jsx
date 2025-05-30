@@ -3,12 +3,16 @@ import PersonalInfo from "./PersonalInfo";
 import Summary from "./Summary";
 import EducationSection from "./EducationSection";
 import ExperienceSection from "./ExperienceSection";
-import Experience from "./Experience";
-import Education from "./Education";
 
-const Form = ({ disabledVal }) => {
-  const [inputs, setInputs] = useState({});
-
+const Form = ({
+  disabledVal,
+  inputs,
+  setInputs,
+  educations,
+  setEducations,
+  experiences,
+  setExperiences,
+}) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -21,7 +25,7 @@ const Form = ({ disabledVal }) => {
   return (
     <form
       autoComplete="off"
-      className="h-auto min-h-[29.7cm] w-[21cm] p-5 flex flex-col gap-4 bg-white rounded-sm"
+      className="h-auto min-h-[29.7cm] w-[21cm] py-6 px-8 flex flex-col gap-2 bg-white rounded-sm"
     >
       <PersonalInfo
         disabledVal={disabledVal}
@@ -33,8 +37,16 @@ const Form = ({ disabledVal }) => {
         inputs={inputs}
         handleChange={handleInputChange}
       />
-      <EducationSection disabledVal={disabledVal} />
-      <ExperienceSection disabledVal={disabledVal} />
+      <EducationSection
+        disabledVal={disabledVal}
+        educations={educations}
+        setEducations={setEducations}
+      />
+      <ExperienceSection
+        disabledVal={disabledVal}
+        experiences={experiences}
+        setExperiences={setExperiences}
+      />
     </form>
   );
 };
