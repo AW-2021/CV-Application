@@ -4,20 +4,8 @@ import Experience from "./Experience";
 
 const MAX_HEIGHT = 500;
 
-const ExperienceSection = ({ disabledVal }) => {
-  const [experiences, setExperiences] = useState([
-    {
-      id: 0,
-      companyName: "",
-      companyLocation: "",
-      companyRole: "",
-      jobType: "",
-      expStartDate: "",
-      expEndDate: "",
-      expDescList: [],
-    },
-  ]);
-
+const ExperienceSection = ({ disabledVal, experiences, setExperiences }) => {
+  
   const handleChange = (e, index) => {
     const { name, value } = e.target;
 
@@ -46,8 +34,8 @@ const ExperienceSection = ({ disabledVal }) => {
   };
 
   return (
-    <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
-      <legend className="font-bold">EXPERIENCE</legend>
+    <fieldset disabled={disabledVal}>
+      <legend className="bg-blue-900 w-full text-center text-white mb-3 p-0.5">EXPERIENCE</legend>
 
       {/* Every new experience field is a separate component */}
       {experiences.map((item) => (
@@ -64,7 +52,7 @@ const ExperienceSection = ({ disabledVal }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="w-full p-1 mb-4 mt-4 border-2 border-blue-500 rounded-full"
+          className="w-full p-1 mt-2 mb-3 border-2 border-blue-500 rounded-full"
         >
           <BsPlusCircleFill className="inline text-lg text-blue-500 mr-2 align-text-top" />
           Add Experience
