@@ -2,29 +2,39 @@ import { useState } from "react";
 
 const Education = ({ itemIndex, educations, setEducations, handleChange }) => {
   const [newEduDesc, setNewEduDesc] = useState("");
+  const [isEnterKey, setIsEnterKey] = useState(true);
 
   const handleAddDesc = (e) => {
     const { name, value } = e.target;
 
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const newValue = { id: Date.now(), text: value };
+    if (e.key === "Enter" || !e.key) {
+      if (value.trim() !== "") {
+        e.preventDefault();
+        const newValue = { id: Date.now(), text: value };
 
-      setEducations((prevEducation) => {
-        const newEducation = [...prevEducation];
-        newEducation[itemIndex] = {
-          ...newEducation[itemIndex],
-          [name]: [...prevEducation[itemIndex]?.eduDescList || [], newValue],
+        setEducations((prevEducation) => {
+          const newEducation = [...prevEducation];
+          newEducation[itemIndex] = {
+            ...newEducation[itemIndex],
+            [name]: [
+              ...(prevEducation[itemIndex]?.eduDescList || []),
+              newValue,
+            ],
+          };
+          return newEducation;
+        });
+        setNewEduDesc("");
+
+        if (!e.key) {
+          setIsEnterKey(false);
         }
-        return newEducation;
-      })
-      setNewEduDesc("");
+      }
     }
   };
 
   return (
-    <>
-      <div className="w-full flex justify-between">
+    <div className="mb-3">
+      <div className="w-full flex justify-between mb-1">
         <input
           name="educationInstitute"
           value={educations[itemIndex]?.educationInstitute || ""}
@@ -40,7 +50,8 @@ const Education = ({ itemIndex, educations, setEducations, handleChange }) => {
           placeholder="Rhode Island, USA"
         />
       </div>
-      <div className="w-full flex justify-between">
+
+      <div className="w-full flex justify-between mb-1">
         <div>
           <input
             name="educationDegree"
@@ -78,22 +89,25 @@ const Education = ({ itemIndex, educations, setEducations, handleChange }) => {
         </div>
       </div>
 
-      <ul className="list-inside list-disc w-full">
+      <ul className="list-inside list-disc w-full indent-3">
         {educations[itemIndex]?.eduDescList?.map((desc) => (
-          <li key={desc.id}>{desc.text}</li>
+          <li key={desc.id} onClick={() => setIsEnterKey(true)}>{desc.text}</li>
         ))}
-        <li>
-          <input
-            name="eduDescList"
-            value={newEduDesc}
-            onChange={(e) => setNewEduDesc(e.target.value)}
-            onKeyDown={handleAddDesc}
-            className="w-11/12 focus:p-2"
-            placeholder="Write your academic achievements here."
-          />
-        </li>
+        {isEnterKey && (
+          <li>
+            <input
+              name="eduDescList"
+              value={newEduDesc}
+              onChange={(e) => setNewEduDesc(e.target.value)}
+              onKeyDown={handleAddDesc}
+              onBlur={handleAddDesc}
+              className="w-11/12 focus:p-2"
+              placeholder="Write your academic achievements here."
+            />
+          </li>
+        )}
       </ul>
-    </>
+    </div>
   );
 };
 
