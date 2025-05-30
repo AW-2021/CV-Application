@@ -1,6 +1,6 @@
 const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
   return (
-    <fieldset disabled={disabledVal}>
+    <fieldset disabled={disabledVal} className="pt-4 pb-2">
       <input
         id="fullName"
         name="fullName"
@@ -17,10 +17,10 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
         placeholder="Senior Product Designer"
         className="w-full block text-center text-lg m-auto mb-2"
       />
-      <table className="w-full ">
+      <table className="w-4/5 m-auto">
         <tbody>
-          <tr className="flex justify-center items-center">
-            <td className="text-sm px-3">
+          <tr className="text-sm text-center">
+            <td className="w-1/3 border-r-2 border-black py-0">
               <input
                 type="email"
                 id="emailAddress"
@@ -28,13 +28,11 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
                 value={inputs.emailAddress}
                 onChange={handleChange}
                 placeholder="janedoe@gmail.com"
-                className="max-w-56 text-center"
+                className="text-center"
               />
             </td>
-            
-            <td>|</td>
 
-            <td className="text-sm px-3 ">
+            <td className="w-1/3 border-r-2 border-black py-0">
               <input
                 type="tel"
                 id="mobile"
@@ -42,33 +40,26 @@ const PersonalInfo = ({ disabledVal, inputs, handleChange }) => {
                 value={inputs.mobile}
                 onChange={handleChange}
                 placeholder="+880 123 606 7415"
-                className="max-w-32 text-center"
+                className="text-center"
               />
             </td>
 
-            <td>|</td>
-
-            <td className="text-sm pl-3 text-center">
+            <td className="w-1/3 py-0">
               <input
                 id="city"
                 name="city"
                 value={inputs.city}
                 onChange={handleChange}
                 placeholder="San Francisco"
-                className="max-w-32"
-              />
-            </td>
-
-            <td>,</td>
-
-            <td className="text-sm pr-3 text-center">
+                className="w-[55%] text-right"
+              />{", "}
               <input
                 id="country"
                 name="country"
                 value={inputs.country}
                 onChange={handleChange}
                 placeholder="USA"
-                className="max-w-32"
+                className="w-[40%]"
               />
             </td>
           </tr>

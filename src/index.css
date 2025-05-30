@@ -17,6 +17,6 @@ input:focus, textarea:focus {
     padding: 0.25rem;
 }
 
-input, textarea {
+input:not(#emailAddress, #mobile, #city, #country), textarea {
     field-sizing: content;
 }

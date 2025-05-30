@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const Summary = ({ disabledVal, inputs, handleChange }) => {
   return (
-    <fieldset className="border-b-2 pb-2" disabled={disabledVal}>
-      <legend className="font-bold">SUMMARY</legend>
+    <fieldset disabled={disabledVal}>
+      <legend className="bg-blue-900 w-full text-center text-white mb-3 p-0.5">SUMMARY</legend>
       <textarea
         id="summary"
         name="summary"
